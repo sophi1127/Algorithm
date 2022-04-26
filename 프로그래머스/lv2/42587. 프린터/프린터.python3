@@ -1,0 +1,19 @@
+def solution(priorities, location):
+
+    doc = [str(i) for i in range(len(priorities))]
+    doc = list(zip(doc, priorities))
+    
+    cnt = 1
+    while True:
+        temp = doc[0]
+        doc.pop(0)
+        if doc:
+            if temp[1] >= max([x[1] for x in doc]):
+                if temp[0] == str(location):
+                    return cnt
+                else: 
+                    cnt += 1
+            else:
+                doc.append(temp)
+        else:
+            return cnt
