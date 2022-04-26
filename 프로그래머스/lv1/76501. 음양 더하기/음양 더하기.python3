@@ -1,0 +1,6 @@
+def solution(absolutes, signs):
+    answer = 0
+    signs = [1 if x == True else -1 for x in signs]
+    for i in range(len(absolutes)):
+        answer += absolutes[i] * signs[i]
+    return answer
