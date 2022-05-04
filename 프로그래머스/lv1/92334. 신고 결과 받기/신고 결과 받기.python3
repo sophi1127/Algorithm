@@ -1,0 +1,29 @@
+def solution(id_list, report, k):
+    
+    answer = []
+    report = list(set(report))
+    reporting = {}
+    reported = {}
+    
+    for x in report:
+        a, b = x.split(' ')
+        if a in reporting:
+            temp = reporting[a]
+            temp.append(b)
+            reporting[a] = temp
+        else:
+            reporting[a] = [b]
+        if b in reported:
+            reported[b] += 1
+        else:
+            reported[b] = 1
+            
+    stop = [x for x in reported.keys() if reported[x] >= k]
+    
+    for x in id_list:
+        if x in reporting:
+            answer.append(len(set(reporting[x]).intersection(set(stop))))
+        else:
+            answer.append(0)
+            
+    return answer
